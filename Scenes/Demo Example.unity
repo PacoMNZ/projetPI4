@@ -3913,7 +3913,7 @@ PrefabInstance:
       objectReference: {fileID: 551888384}
     - target: {fileID: 7075271201826753492, guid: c0599b6179aad1b42a6c2d5c8371a04f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: onBuyCoinsButtonClicked
+      value: OnBuyCoinsButtonClicked
       objectReference: {fileID: 0}
     - target: {fileID: 7075271201826753492, guid: c0599b6179aad1b42a6c2d5c8371a04f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

@@ -103,7 +103,7 @@ public class RegisterPanel : PanelController
 	// <param name="amount">The amount of tez spent (1 tez = 1000 coins).</param>
 	// For now, amount = 1
 	public void OnBuyCoinsButtonClicked() {
-		var amount = 1;
+		double amount = 1;
 		_exampleManager.BuyCoins(amount);
 	}
 
