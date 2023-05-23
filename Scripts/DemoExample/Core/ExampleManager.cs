@@ -11,7 +11,8 @@ public class ExampleManager : IExampleManager
 {
     private const string networkName = "ghostnet";//"jakartanet";
     private const string networkRPC = "https://rpc.ghostnet.teztnets.xyz";//"https://jakartanet.tezos.marigold.dev";
-    private const string contractAddress = "KT1WguzxyLmuKbJhz3jNuoRzzaUCncfp6PFE";//"KT1DMWAeaP6wxKWPFDLGDkB7xUg563852AjD";
+    //private const string contractAddress = "KT1MHBNNGuFo9s8op9ZMPJkzTTKd3AYxQgQh";//"KT1DMWAeaP6wxKWPFDLGDkB7xUg563852AjD";celle la elle marche lootboxes
+    private const string contractAddress = "KT1No85KdUVPTNPXDDzAazWJ4erW565RPNtL";//"KT1DMWAeaP6wxKWPFDLGDkB7xUg563852AjD";
     private const string indexerNode = "https://api.ghostnet.tzkt.io/v1/operations/{0}/status"; //"https://api.mainnet.tzkt.io/v1/operations/{transactionHash}/status";
     private const int softCurrencyID = 0;
 
@@ -215,36 +216,21 @@ public class ExampleManager : IExampleManager
 // Calls the buy_coins entrypoint with [amount, s] as parameters
 // input: amount in tez
 public void BuyCoins(double amount) {
-    var entrypoint = "buy_coins";
-    var input = new MichelinePrim
-    {
-        Prim = PrimType.Pair,
-        Args = new List<IMicheline>
-        {
-            new MichelineInt((ulong)(amount * 1000)),
-            new MichelineInt(softCurrencyID)
-        }
-    }.ToJson();
+    var entrypoint = "buyCoins";
+    int coins = Convert.ToInt32(amount * 1000);
+    var parameter = new MichelineInt(coins).ToJson();
 
-    _tezos.CallContract(contractAddress, entrypoint, input, (ulong)(amount * 1000000));
+    _tezos.CallContract(contractAddress, entrypoint, parameter, (ulong)(amount * 1000000));
 }
 
     // Buy a loot box for 50 soft currency
-    // Calls the buy_lootbox entrypoint with [price, s] as parameters
+    // Calls the buy_lootbox entrypoint with [price] as parameters
     public void BuyBox()
     {
-        var entrypoint = "buy_box";
-        var input = new MichelinePrim
-        {
-            Prim = PrimType.Pair,
-            Args = new List<IMicheline>
-            {
-                new MichelineInt(50),
-                new MichelineInt(softCurrencyID)
-            }
-        }.ToJson();
+        var entrypoint = "buyLootbox";
+        var parameter = new MichelineInt(50).ToJson();
 
-        _tezos.CallContract(contractAddress, entrypoint, input, 0);
+        _tezos.CallContract(contractAddress, entrypoint, parameter, 0);
     }
 
 	public User GetCurrentUser()
